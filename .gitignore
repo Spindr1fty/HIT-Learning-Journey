@@ -20,3 +20,7 @@ Desktop.ini
 # 其他
 .env
 node_modules/
+
+# 忽略安装包和镜像文件
+*.exe
+*.iso

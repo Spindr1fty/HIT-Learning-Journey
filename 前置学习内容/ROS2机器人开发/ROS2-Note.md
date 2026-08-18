@@ -27,8 +27,8 @@ ROS包含大量搭建机器人所需的软件和工具，是目前应用最为�
              ----运动指令--->（执行器）
 ```
 
-DDS：Data Distribution Service  数据分发服务
-RMW: ROS Middle Ware
+ - DDS：Data Distribution Service  数据分发服务
+ - RMW: ROS Middle Ware
 
 ```
                           ROS 2架构概述
@@ -82,14 +82,14 @@ ROS 2开发中的槽点：
  - 初学者在Windows上安装虚拟机，并在虚拟机中运行Linux系统
  - 对于实际的机器人建模仿真和实体机器人开发，建议使用搭载Linux的实体机
 
-·虚拟机安装
+ - 虚拟机安装
 用户在Windows系统上创建一个独立的Linux环境，对学习和测试很有用
-·快速创建包含ROS2的双系统
+ - 快速创建包含ROS2的双系统
 使用FISHROS2OS等工具可以简化在移动磁盘上安装Linux与Windows并存的双系统过程。
 https://www.fishros.org.cn/forum/topic/1835
 
-准备软件：
-虚拟机：VirtualBox
+ - 准备软件：
+虚拟机：VirtualBox  
 下载网址：https://www.virtualbox.org/wiki/Downloads
 选择Windows hosts进行下载Windows版本，下载完成后双击运行
 在前置学习内容-ROS2机器人开发文件夹中已存入，可取用

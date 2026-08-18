@@ -7,8 +7,8 @@ ROS2机器人开发课程内容：
 3. 导航-让机器人自己动起来
 4. 实体机器人-从零搭建一个实体机器人
 5. ROS2进阶-深入掌握ROS2
-课程来自Bilibili:鱼香ROS机器人
-https://www.bilibili.com/video/BV1GW42197Ck/?share_source=copy_web&vd_source=90d9499756896bb51e1ab3bdfe1ac934
+ - 课程来自Bilibili:鱼香ROS机器人
+   https://www.bilibili.com/video/BV1GW42197Ck/?share_source=copy_web&vd_source=90d9499756896bb51e1ab3bdfe1ac934
 
 作者开源库&GithHub代理：https://github.fishros.org（打不开？）
 
@@ -75,7 +75,7 @@ ROS 2开发中的槽点：
 3. 通信速度受内存速度、网速等物理层限制
 4. 大而全，注定和小而美此生无缘
 
-### 1.2.1-1.2.3 ROs2安装虚拟机和Ubuntu
+### 1.2.1-1.2.3 ROS2安装虚拟机和Ubuntu
 
 操作系统选择
  - 尽管ROS 2可以安装在多种操作系统上，但推荐使用Linux操作系统，因为Linux提供了更好的兼容性和性能优化

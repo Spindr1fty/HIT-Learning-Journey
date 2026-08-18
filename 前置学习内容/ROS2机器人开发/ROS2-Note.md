@@ -77,7 +77,7 @@ ROS 2开发中的槽点：
 
 ### 1.2.1-1.2.3 ROS2安装虚拟机和Ubuntu
 
-- 操作系统选择
+- 操作系统选择  
    尽管ROS 2可以安装在多种操作系统上，但推荐使用Linux操作系统，因为Linux提供了更好的兼容性和性能优化  
    初学者在Windows上安装虚拟机，并在虚拟机中运行Linux系统  
    对于实际的机器人建模仿真和实体机器人开发，建议使用搭载Linux的实体机  
@@ -88,7 +88,7 @@ ROS 2开发中的槽点：
 使用FISHROS2OS等工具可以简化在移动磁盘上安装Linux与Windows并存的双系统过程。
 https://www.fishros.org.cn/forum/topic/1835
 
- - 准备软件：
+ - 准备软件：  
 虚拟机：VirtualBox  
 下载网址：https://www.virtualbox.org/wiki/Downloads
 选择Windows hosts进行下载Windows版本，下载完成后双击运行

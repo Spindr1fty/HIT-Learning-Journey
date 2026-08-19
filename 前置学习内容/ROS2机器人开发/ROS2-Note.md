@@ -92,8 +92,12 @@ https://www.fishros.org.cn/forum/topic/1835
 下载网址：https://www.virtualbox.org/wiki/Downloads  
 选择Windows hosts进行下载Windows版本，下载完成后双击运行  
 Linux系统镜像：Ubuntu 22.04 version  
+
+因为个人电脑原因，这里VB使用出现问题，已将虚拟机更换为VMware Workstation Pro
+
  - 创建新虚拟机
 打开VirtualBox之后，点击新建进入到新建虚拟电脑的界面，名称自拟或者起Ubuntu，文件夹选择建议在其他盘符下新建文件夹作为Ubuntu系统盘，虚拟光盘则选择刚才下载的镜像iso.文件，跳过自动安装，内存设置4096-8192MB，处理器设置为4核心，虚拟硬盘分配磁盘空间时建议将磁盘空间设置为50-100GB，除非点击预先分配全部空间，否则只会用多少占用多少主机的磁盘空间，这样就创建完成了
+
  - 安装Ubuntu  
 ⭕注意事项：如果出现分辨率原因导致Ubuntu页面内容显示不完全的话，按Ctrl + Alt + t 打开终端，然后输入 gnome-control-center display 打开分辨率设置页面，自己选择分辨率调整至Ubuntu页面全部显示为止(本人设置为1280*800，16:10)  
 左侧语言栏选择简体中文，点击右边安装，选择键盘配置为Chinese-Chinese，下一步选择最小安装，取消勾选“安装Ubuntu时下载更新”。对于“为图形或无限硬件......”，在安装双系统的时候可以勾选，下一步选择“清除整个磁盘并安装Ubuntu”，下一步地区选择东八区(默认应该是Shanghai)，输入名字和密码，按自己喜好输入，勾选“登录时需要密码”，安装完毕后进行Ubuntu重启并自动初始化，进入桌面如有一系列设置都选择跳过/否，不发送系统信息，最后安装成功。
@@ -117,3 +121,52 @@ Linux系统镜像：Ubuntu 22.04 version
  使用键盘控制小海龟使用另一个终端，打开新终端后输入run turtlesim turtle_teleop_key并回车，这时的turtle_teleop_key终端充当遥控器功能，小海龟界面为玩具车功能，ROS2起到通信连接作用，在点击turtle_teleop_key终端后就可以在键盘上按方向键对海龟进行控制
 5. 案例分析  
 新开一个终端，输入rqt回车，点击plugins，选择introspection，选择Node Graph，如果界面较小使用鼠标中键进行放大，箭头为信号的传输方向，其中有cmd_vel代表ROS通信机制的话题。
+
+### 1.4.1 Linux终端基础操作
+1. 目录部分  
+```bash
+$ pwd # 查看终端当前目录默认主目录  
+
+/home/Spindrift  
+$ ls # 查看当前目录下的文件  
+----  
+bin dev home lib lib64 ...  
+$ cd / # 从当前进入到根目录  
+$ pwd  
+----  
+/  
+$ cd ~ # 查看主目录  
+$ ls  
+----  
+公共的 模板 视频 图片 文档 下载 音乐 桌面 snap  
+````
+2. 文件部分
+```bash
+$ cd ~    #进入主目录  
+$ mkdir chapt1             #在主目录下创建chapt1文件夹  
+$ cd chapt1                #从主目录进入chapt1  
+$ touch hello_world.txt    #创建空白文件  
+$ nano hello_world.txt     #在命令行中编辑文件  
+$ pwd    #查看当前路径  
+----  
+/home/fishros/chapt1  
+$ ls    #查看chapt1目录下所有文件  
+----  
+hello_world.txt  
+$ cat hello_world.txt    #查看文件内容
+----  
+hello ros 2!  
+$ rm hello_world.txt     #删除文件
+```
+3. 命令的帮助
+```bash
+$ rm --help  
+----  
+用法：rm[选项]...  [文件]...  
+删除 (unlink) 一个或多个 <文件>  
+```
+
+### 1.4.2 在Linux中安装软件
+
+
+

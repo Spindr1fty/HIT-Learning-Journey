@@ -126,18 +126,12 @@ Linux系统镜像：Ubuntu 22.04 version
 1. 目录部分  
 ```bash
 $ pwd # 查看终端当前目录默认主目录  
-
 /home/Spindrift  
 $ ls # 查看当前目录下的文件  
-----  
 bin dev home lib lib64 ...  
-$ cd / # 从当前进入到根目录  
-$ pwd  
-----  
-/  
-$ cd ~ # 查看主目录  
-$ ls  
-----  
+$ cd / #从当前进入到根目录  
+$ cd ~ #从当前进入到主目录  
+$ ls   #查看主目录下所有文件  
 公共的 模板 视频 图片 文档 下载 音乐 桌面 snap  
 ````
 2. 文件部分
@@ -148,25 +142,108 @@ $ cd chapt1                #从主目录进入chapt1
 $ touch hello_world.txt    #创建空白文件  
 $ nano hello_world.txt     #在命令行中编辑文件  
 $ pwd    #查看当前路径  
-----  
 /home/fishros/chapt1  
 $ ls    #查看chapt1目录下所有文件  
-----  
 hello_world.txt  
 $ cat hello_world.txt    #查看文件内容
-----  
 hello ros 2!  
 $ rm hello_world.txt     #删除文件
 ```
 3. 命令的帮助
 ```bash
 $ rm --help  
-----  
 用法：rm[选项]...  [文件]...  
 删除 (unlink) 一个或多个 <文件>  
 ```
 
 ### 1.4.2 在Linux中安装软件
 
+ - 在VMware虚拟机前提下提前安装 open-vm-tools 可以在Ubuntu中像Kali一样把主机和虚拟机中的内容互相复制粘贴和随着虚拟机窗口大小自动改变分辨率功能，指令如下：  
+ ```bash
+$ sudo apt update
+$ sudo apt install -y open-vm-tools-desktop
+```
+ - 在VirtualBox虚拟机下可以安装所提供的虚拟机增强插件来实现：  
+ 点击设备  
+ 安装增强功能  
+ 在桌面的左边会有一个CD图标，打开，右键当前页面以终端打开，输入 pwd 查看当前路径，输入 ./autorun.sh 进行执行当前文件夹目录下脚本
+在安装完成后进行重启就可以(可以使用指令或者手动关机重启，指令：sudo reboot)
+
+1. 在Linux中下载VSCODE  
+打开虚拟机中的Ubuntu，再打开火狐浏览器输入VSCODE下载网址，在Ubuntu中下载.deb格式的安装包，VSCODE下载网址：https://code.visualstudio.com  
+可能会用到的指令：  
+```bash
+$ cd ~/下载   #使用 Win + 空格 可以切换中英文输入法  
+$ sudo dpkg -i ./code_1.77.0-1680085573_amd64.deb  
+[sudo] Spindrift 的密码：  
+```
+虽然使用 dpkg 可以直接安装下载好的.deb格式的安装包，但是使用另外一个更高级的包管理工具 apt 则可以直接通过软件包的名字进行下载和安装  
+```bash
+$ sudo apt install git
+```
+除了dpkg和apg之外，还可以通过运行脚本安装，用已安装VisualBox的增强功能为例，来学习如何使用安装脚本  
+```bash
+$ ./autorun.sh
+```
+2. 安装  
+ Ctrl+Alt+T 打开终端，查看所下载的安装包所在目录并进入到安装包所在的目录中，查看当前文件夹下所存在的文件，然后使用 sudo depkg -i ./code(按tab补全)，最后按回车运行  
+⭕如有显示以下问题：  
+```bash
+spindrift@spindrift-virtual-machine:~/ 下载$ sudo dpkg -i./code_1.134.0-1787078834_and64.deb  
+dpkg:错误:dpkg前端锁 已被另一个pid为4823的进程加锁注意:删除锁文件的操作是错误的，这样操作会损坏上锁的部分甚至损坏  
+个系统。详情请见<https://wiki.debian.org/Teams/Dpkg/FAQ>。  
+spindrift@spindrift-virtual-machine:~/下载s  
+```
+则说明是dpkg的安装锁冲突，系统里以及有另一个程序正在用dpkg/apt，最常见为Ubuntu的后台更新，在终端执行
+```bash
+$ ps -ef | grep 4823(该四位号码为上述问题pid所显示的号码，如有该问题按实际显示的进程码为准)
+```
+大概率会看到这几个情况之一:  
+unattended-upgrades → 系统自动更新（最常见，刚装的 Ubuntu 会自己跑更新）  
+apt-get / apt → 你之前开过更新没等它结束  
+dpkg → 之前装包没装完  
+处理办法（按顺序）  
+第 1 步：等几分钟（推荐，90% 情况管用）  
+自动更新一般 5-10 分钟就结束，等锁释放后重试：  
+```bash
+sudo dpkg -i ./code_1.134.0-1787078834_amd64.deb  
+```
+第 2 步：如果确认没有其他安装在进行，可以安全解锁  
+先看锁是否还被占用：  
+```bash
+sudo fuser /var/lib/dpkg/lock-frontend
+```
+如果有输出（返回 pid）→ 说明真有进程在用，别动，继续等  
+如果没输出 → 锁是残留的，可以清掉： 
+```bash 
+sudo rm /var/lib/dpkg/lock-frontend /var/lib/dpkg/lock /var/cache/apt/archives/lock  
+sudo dpkg --configure -a
+```
+⚠️ 注意：报错里那句"删除锁文件是错误的"指的是在有进程运行时硬删会损坏系统。按上面顺序先确认无进程再删，是安全的。  
+第 3 步：装完后顺便修掉 apt 卡住的半成品状态  
+```bash
+sudo dpkg --configure -a
+sudo apt-get install -f
+```
+在运行完安装命令后如果有提示显示：  
+```bash
+Configuring code
+
+This package will configure the Microsoft repository (apt source)
+to receive updates for Visual Studio Code.
+
+Do you want to continue?
+
+                    <Yes>  <No>
+```
+是VSCODE的软件源确认弹窗，选<Yes>就可以  
+等待安装完成后在终端里面输入code来进行调用VSCODE
+
+3. git安装
+ - git是Linux中一个用于管理代码版本的工具，安装指令如下：  
+```bash
+$ sudo apt install git
+```
+后续选择Y即可  
 
 

@@ -1,0 +1,3 @@
+/home/spindrift/Chapt1/CMakeFiles/learn_cmake.dir
+/home/spindrift/Chapt1/CMakeFiles/edit_cache.dir
+/home/spindrift/Chapt1/CMakeFiles/rebuild_cache.dir

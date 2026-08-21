@@ -10,8 +10,7 @@ ROS2机器人开发课程内容：
  - 课程来自Bilibili:鱼香ROS机器人
    https://www.bilibili.com/video/BV1GW42197Ck/?share_source=copy_web&vd_source=90d9499756896bb51e1ab3bdfe1ac934
 
-作者开源库&GithHub代理：https://github.fishros.org（打不开？）
-
+作者开源库&GithHub代理：https://github.fishros.org
 
 ## 第一章
 ### 1.1 ROS的介绍
@@ -157,7 +156,6 @@ $ rm --help
 ```
 
 ### 1.4.2 在Linux中安装软件
-
  - 在VMware虚拟机前提下提前安装 open-vm-tools 可以在Ubuntu中像Kali一样把主机和虚拟机中的内容互相复制粘贴和随着虚拟机窗口大小自动改变分辨率功能，指令如下：  
  ```bash
 $ sudo apt update
@@ -167,8 +165,7 @@ $ sudo apt install -y open-vm-tools-desktop
  点击设备  
  安装增强功能  
  在桌面的左边会有一个CD图标，打开，右键当前页面以终端打开，输入 pwd 查看当前路径，输入 ./autorun.sh 进行执行当前文件夹目录下脚本
-在安装完成后进行重启就可以(可以使用指令或者手动关机重启，指令：sudo reboot)
-
+在安装完成后进行重启就可以(可以使用指令或者手动关机重启，指令：sudo reboot)  
 1. 在Linux中下载VSCODE  
 打开虚拟机中的Ubuntu，再打开火狐浏览器输入VSCODE下载网址，在Ubuntu中下载.deb格式的安装包，VSCODE下载网址：https://code.visualstudio.com  
 可能会用到的指令：  
@@ -186,7 +183,7 @@ $ sudo apt install git
 $ ./autorun.sh
 ```
 2. 安装  
- Ctrl+Alt+T 打开终端，查看所下载的安装包所在目录并进入到安装包所在的目录中，查看当前文件夹下所存在的文件，然后使用 sudo depkg -i ./code(按tab补全)，最后按回车运行  
+Ctrl+Alt+T 打开终端，查看所下载的安装包所在目录并进入到安装包所在的目录中，查看当前文件夹下所存在的文件，然后使用 sudo depkg -i ./code(按tab补全)，最后按回车运行  
 ⭕如有显示以下问题：  
 ```bash
 spindrift@spindrift-virtual-machine:~/ 下载$ sudo dpkg -i./code_1.134.0-1787078834_and64.deb  
@@ -246,4 +243,87 @@ $ sudo apt install git
 ```
 后续选择Y即可  
 
+## 1.4.3 在Linux中编写Python程序
+ - 在学机器人开发的时候最常用的为Python语言和C++语言。  
+为了使用方便，现在VSCODE安装简体中文汉化插件。  
+点击左侧从上往下数第五个图标(Extensions)，然后搜索Chinese，安装第一个简体中文插件包即可，然后点击提示的Change Language and Restart  
+1. 进入指定文件夹  
+打开VSCODE之后，可以点击左侧的“打开文件夹”，选择之前创建的Chapt1即可，也可以通过终端打开，终端的操作指令如下：  
+```bash
+$ cd Chapt1/
+$ code ./
+```
+2. 新建hello_world.py文件  
+在VSCODE中点击左侧从上往下数第一个图标，切换到资源管理器界面，右键，选择新建文件，输入文件名字 hello_world.py  
+3. 输入程序  
+输入程序内容，并保存(Ctrl + s)
+```py
+print('Hello World!')
+```
+4. 运行程序   
+继续右键资源管理器界面，选择在集成终端中打开，使用指令来运行该文件：  
+```bash
+$ ls   #展示当前目录下所存在的文件  
+hello_world.py  
+$ cat hello_world.py   #查看当前文件内容  
+print('Hello World!')  
+$ python3 hello_world.py   #使用python3执行当前文件
+```
 
+## 1.4.4 在Linux中编写C++程序
+1. 新建hello_world.cpp文件  
+在资源管理器界面右键，选择新建文件，输入文件名字 hello_world.cpp  
+2. 输入程序  
+输入程序内容，并保存(Ctrl + s)
+```cpp
+#include <iostream>
+using namespace std;
+int main()
+{
+   cout << "Hello World" << endl;
+}
+```
+3. 编译并执行代码  
+可以使用VSCODE中的集成终端，也可以新建终端  
+先将终端目录切换到文件所在的目录下  
+```bash
+$ g++ hello_world.cpp   #使用g++编译所指定的.cpp文件  
+$ ls   #展示当前文件夹下内容  
+a.out  
+$ ./a.out   #运行当前编译完的文件  
+Hello World!
+```
+ - 对于简单的代码g++可以很轻松编译，但是对于使用多个头文件库的复杂代码g++使用起来就会很麻烦，在程序开发中，可以使用工具 CMake list 来编译c++文件。  
+4. 使用CMake list (简称CMake)  
+在资源管理器界面右键，选择新建文件，输入文件名字 CMakeLists.txt  
+输入内容并保存  
+```bash
+cmake_minimum_required(VERSION 3.8)  
+project(HelloWorld)  
+add_executable(learn_cmake hello_world.cpp)
+```
+然后使用 CMake 指令把它转换成一个 MakeFile 的文件， MakeFile 再调用一个 Make 指令生成可执行文件executable.exe
+ - 编译并运行
+ 打开CODE的集成终端，输入指令:  
+ ```bash
+spindrift@spindrift-virtual-machine:~/Chapt1$ cmake .
+CMake Warning (dev) in CMakeLists.txt:
+  No project() command is present.  The top-level CMakeLists.txt file must
+  contain a literal, direct call to the project() command.  Add a line of
+  code such as
+spindrift@spindrift-virtual-machine:~/Chapt1$ make
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/spindrift/Chapt1
+[ 50%] Building CXX object CMakeFiles/learn_cmake.dir/hello_world.cpp.o
+[100%] Linking CXX executable learn_cmake
+[100%] Built target learn_cmake
+spindrift@spindrift-virtual-machine:~/Chapt1$ ls
+a.out           cmake_install.cmake  hello_world.py   Makefile
+CMakeCache.txt  CMakeLists.txt       hello_world.txt
+CMakeFiles      hello_world.cpp      learn_cmake
+spindrift@spindrift-virtual-machine:~/Chapt1$ ./learn_cmake 
+Hello World!
+spindrift@spindrift-virtual-machine:~/Chapt1$ ^C
+spindrift@spindrift-virtual-machine:~/Chapt1$ 
+```

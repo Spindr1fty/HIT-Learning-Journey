@@ -1,0 +1,6 @@
+/home/spindrift/Chapt2/CMakeFiles/ros2_cpp_node.dir
+/home/spindrift/Chapt2/CMakeFiles/uninstall.dir
+/home/spindrift/Chapt2/CMakeFiles/ros2_cpp_uninstall.dir
+/home/spindrift/Chapt2/CMakeFiles/test.dir
+/home/spindrift/Chapt2/CMakeFiles/edit_cache.dir
+/home/spindrift/Chapt2/CMakeFiles/rebuild_cache.dir

@@ -1,0 +1,35 @@
+# ===== IceCup 仓库忽略规则 =====
+# 目的：只把「源码 + 最终交付件 + 文档」传上 GitHub，
+# 排除大体积生成物、第三方源码副本，以及带个人图片的切片工程文件。
+
+# ---- 1. 大体积且可再生成的产物 ----
+renders/
+oldSTEP/
+tmp/
+tmp_thumb/
+fitTest/
+GLB/
+**/__pycache__/
+*.pyc
+
+# ---- 2. 第三方源码副本（授权与体积原因不随仓库分发）----
+.vendor/
+.mimocode/
+
+# ---- 3. Bambu Studio 切片工程 3MF ----
+# 这几份 3MF 内部含 Model Pictures / Profile Pictures（模型封面图、个人配置），
+# 上传前请先在切片软件里"导出纯 3MF"，或直接只提供同目录的 STEP / STL。
+发射舵机盒.3mf
+便携折叠手机支架.3mf
+Logos.3mf
+
+# ---- 4. 系统与临时文件 ----
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# ---- 保留：最终交付件与打印件 ----
+# newSTEP/  参数化模型导出的 STEP/STL（当前版本）
+# printSTEP/ 可直接切片的打印件
+# 成品/     比赛最终交付件
+# 如需进一步瘦身，可只保留 成品/ 与源码
